@@ -1,0 +1,45 @@
+{
+  "name": "OpenClaw",
+  "slug": "openclaw",
+  "categories": [
+    20,
+    22
+  ],
+  "date_created": "2026-01-31",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 18789,
+  "documentation": "https://docs.openclaw.ai/",
+  "website": "https://openclaw.ai/",
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/openclaw.webp",
+  "config_path": "/opt/openclaw/config.env",
+  "description": "OpenClaw is a personal AI assistant that runs on your own devices. It connects to the channels you already use (WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, Microsoft Teams, and more) and provides voice wake, talk mode, and a live canvas you control. The Gateway acts as the control plane for sessions, channels, tools, and events, giving you a local-first, fast, and always-on AI assistant.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/openclaw.sh",
+      "resources": {
+        "cpu": 2,
+        "ram": 2048,
+        "hdd": 10,
+        "os": "debian",
+        "version": "13"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "After installation, run `openclaw onboard` to configure channels and workspaces.",
+      "type": "info"
+    },
+    {
+      "text": "For security, DMs from unknown senders require pairing approval by default.",
+      "type": "warning"
+    }
+  ]
+}
