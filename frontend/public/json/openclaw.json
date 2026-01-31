@@ -34,12 +34,16 @@
   },
   "notes": [
     {
-      "text": "After installation, run `openclaw onboard` to configure channels and workspaces.",
+      "text": "After installation, enter the container and run: openclaw onboard --install-daemon",
+      "type": "warning"
+    },
+    {
+      "text": "The onboarding wizard will configure your Anthropic/OpenAI API keys and install the gateway service.",
       "type": "info"
     },
     {
-      "text": "For security, DMs from unknown senders require pairing approval by default.",
-      "type": "warning"
+      "text": "Requires Claude Pro/Max subscription or API key for full functionality.",
+      "type": "info"
     }
   ]
 }

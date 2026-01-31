@@ -29,35 +29,15 @@ msg_info "Installing OpenClaw (Patience)"
 $STD npm install -g openclaw@latest
 msg_ok "Installed OpenClaw"
 
-msg_info "Creating Service"
-mkdir -p /opt/openclaw
-cat <<EOF >/opt/openclaw/config.env
-OPENCLAW_PORT=18789
-OPENCLAW_HOST=0.0.0.0
-EOF
-
-cat <<EOF >/etc/systemd/system/openclaw.service
-[Unit]
-Description=OpenClaw Personal AI Assistant Gateway
-After=network.target
-
-[Service]
-Type=simple
-EnvironmentFile=/opt/openclaw/config.env
-ExecStart=/usr/bin/openclaw gateway --port 18789 --allow-unconfigured
-Restart=on-failure
-RestartSec=10
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl enable -q --now openclaw
-msg_ok "Created Service"
-
 msg_info "Saving Version"
+mkdir -p /opt/openclaw
 RELEASE=$(openclaw --version 2>/dev/null | head -1)
 echo "${RELEASE}" >/opt/openclaw_version.txt
-msg_ok "Saved Version ${RELEASE}"
+msg_ok "Installed OpenClaw ${RELEASE}"
+
+echo -e "\n${INFO}${YW} To complete setup, run inside the container:${CL}"
+echo -e "${TAB}${GN}openclaw onboard --install-daemon${CL}"
+echo -e "${INFO}${YW} This will configure your API keys and install the service.${CL}\n"
 
 motd_ssh
 customize

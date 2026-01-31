@@ -42,23 +42,11 @@ function update_script() {
     exit
   fi
 
-  msg_info "Stopping ${APP}"
-  systemctl stop openclaw
-  msg_ok "Stopped ${APP}"
-
-  NODE_VERSION="22" setup_nodejs
-
   msg_info "Updating ${APP}"
-  $STD npm update -g openclaw
-  msg_ok "Updated ${APP}"
-
-  msg_info "Starting ${APP}"
-  systemctl start openclaw
-  msg_ok "Started ${APP}"
-
+  $STD openclaw update --channel stable
   RELEASE=$(openclaw --version 2>/dev/null | head -1)
   echo "${RELEASE}" >/opt/openclaw_version.txt
-  msg_ok "Updated successfully to ${RELEASE}"
+  msg_ok "Updated ${APP} to ${RELEASE}"
   exit
 }
 
@@ -67,6 +55,8 @@ build_container
 description
 
 msg_ok "Completed successfully!\n"
-echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
-echo -e "${INFO}${YW} Access it using the following URL:${CL}"
+echo -e "${CREATING}${GN}${APP} has been installed!${CL}"
+echo -e "${INFO}${YW} To complete setup, enter the container and run:${CL}"
+echo -e "${TAB}${BGN}openclaw onboard --install-daemon${CL}"
+echo -e "${INFO}${YW} After onboarding, access the dashboard at:${CL}"
 echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:18789${CL}"
